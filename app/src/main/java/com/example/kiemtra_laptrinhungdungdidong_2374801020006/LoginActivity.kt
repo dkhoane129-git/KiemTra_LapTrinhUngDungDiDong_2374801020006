@@ -1,5 +1,6 @@
 package com.example.kiemtra_laptrinhungdungdidong_2374801020006
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Patterns
@@ -12,6 +13,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class LoginActivity : AppCompatActivity() {
+
+    companion object {
+        const val EXTRA_EMAIL = "EXTRA_EMAIL"
+    }
 
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
@@ -58,5 +63,10 @@ class LoginActivity : AppCompatActivity() {
 
         tvStatus.setTextColor(Color.parseColor("#2E7D32"))
         tvStatus.text = "Xác thực thành công!"
+
+        // Explicit Intent: chuyển sang ProfileActivity và truyền Email
+        val intent = Intent(this, ProfileActivity::class.java)
+        intent.putExtra(EXTRA_EMAIL, email)
+        startActivity(intent)
     }
 }
